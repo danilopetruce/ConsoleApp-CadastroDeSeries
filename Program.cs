@@ -21,7 +21,7 @@ namespace DAN.Series
             InserirSerie();
             break;
           case "3":
-            // AtualizarSerie();
+            EditarSerie();
             break;
           case "4":
             //ExcluirSerie();
@@ -45,6 +45,34 @@ namespace DAN.Series
       Console.WriteLine("Obrigado por utilizar nossos serviços");
       Console.ReadLine();
 
+    }
+    private static void EditarSerie()
+    {
+      Console.Write("Digite o id da série: ");
+      int indiceSerie = int.Parse(Console.ReadLine());
+
+      foreach (int i in Enum.GetValues(typeof(Genero)))
+      {
+        Console.WriteLine("{0}-{1}", i, Enum.GetName(typeof(Genero), i));
+      }
+
+      Console.Write("Digite o gênero entre as opções acima: ");
+      int entradaGenero = int.Parse(Console.ReadLine());
+
+      Console.Write("Digite o Título da Série: ");
+      string entradaTitulo = Console.ReadLine();
+
+      Console.Write("Digite o Ano de Inicio da Série: ");
+      int entradaAno = int.Parse(Console.ReadLine());
+
+      Console.Write("Digite a Descrição da Série: ");
+      string entradaDescricao = Console.ReadLine();
+
+      Serie atualizaSerie = new Serie(Id: indiceSerie, genero: (Genero)entradaGenero,
+                                    titulo: entradaTitulo, ano: entradaAno, descricao: entradaDescricao);
+
+
+      repositorio.Atualiza(indiceSerie, atualizaSerie);
     }
 
     private static void ListarSeries()
